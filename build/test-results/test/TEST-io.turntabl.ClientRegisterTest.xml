@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="io.turntabl.ClientRegisterTest" tests="21" skipped="0" failures="0" errors="0" timestamp="2019-11-15T10:22:12" hostname="ip-172-31-19-39" time="0.012">
+  <properties/>
+  <testcase name="testGetClientById_IdNotEqualsClientsId" classname="io.turntabl.ClientRegisterTest" time="0.005"/>
+  <testcase name="getClientsByLevel_Gold_Empty" classname="io.turntabl.ClientRegisterTest" time="0.001"/>
+  <testcase name="testGetClientByName_OnlyFirstName" classname="io.turntabl.ClientRegisterTest" time="0.0"/>
+  <testcase name="geClientByLevel_Platinum_NotPlatinumClients" classname="io.turntabl.ClientRegisterTest" time="0.0"/>
+  <testcase name="geClientByLevel_Platinum_AllPlatinumClients" classname="io.turntabl.ClientRegisterTest" time="0.0"/>
+  <testcase name="getClientByLevel_Premium_AllPremiumClients" classname="io.turntabl.ClientRegisterTest" time="0.0"/>
+  <testcase name="getClientByLevel_Gold_AllGoldClients" classname="io.turntabl.ClientRegisterTest" time="0.001"/>
+  <testcase name="testGetClientByName_DifferentClientWithSameFirstName" classname="io.turntabl.ClientRegisterTest" time="0.0"/>
+  <testcase name="testGetClientByName_AllinLowerCase" classname="io.turntabl.ClientRegisterTest" time="0.0"/>
+  <testcase name="testGetClientByName_UpperAndLowerMixed" classname="io.turntabl.ClientRegisterTest" time="0.001"/>
+  <testcase name="testGetClientByName_AllinUpperCase" classname="io.turntabl.ClientRegisterTest" time="0.0"/>
+  <testcase name="geClientByLevel_Platinum_Empty" classname="io.turntabl.ClientRegisterTest" time="0.0"/>
+  <testcase name="testGetClientname_NameDoesNotEqualsClientsName" classname="io.turntabl.ClientRegisterTest" time="0.0"/>
+  <testcase name="testGetClientById_IdEqualsClientsId" classname="io.turntabl.ClientRegisterTest" time="0.0"/>
+  <testcase name="getClientByLevel_Premium_NotPremiumClients" classname="io.turntabl.ClientRegisterTest" time="0.0"/>
+  <testcase name="getClientByLevel_Premium_Empty" classname="io.turntabl.ClientRegisterTest" time="0.0"/>
+  <testcase name="getClientByLevel_Gold_NotAllGoldClients" classname="io.turntabl.ClientRegisterTest" time="0.0"/>
+  <testcase name="geClientByLevel_Platinum_NotAllPlatinumClients" classname="io.turntabl.ClientRegisterTest" time="0.0"/>
+  <testcase name="getClientByLevel_Gold_NotGoldClients" classname="io.turntabl.ClientRegisterTest" time="0.0"/>
+  <testcase name="getClientByLevel_Premium_NotAllPremiumClients" classname="io.turntabl.ClientRegisterTest" time="0.0"/>
+  <testcase name="testGetClientByName_NameEqualClientsName" classname="io.turntabl.ClientRegisterTest" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
