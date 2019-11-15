@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="io.turntabl.ConnectionTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2019-11-15T16:50:49" hostname="ip-172-31-22-82" time="0.248">
+  <properties/>
+  <testcase name="testQueryForClientsNamesByLevel" classname="io.turntabl.ConnectionTest" time="0.248"/>
+  <system-out><![CDATA[Isaac Agyen 
+Yaa Nuamah 
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

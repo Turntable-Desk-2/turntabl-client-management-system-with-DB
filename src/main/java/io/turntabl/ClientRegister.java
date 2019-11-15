@@ -29,11 +29,11 @@ public class ClientRegister {
                 .collect(Collectors.toList());
     }
 
-    public List <Client> getClientsById(int clientsId){
-        return clients.stream()
-                .filter(client -> client.getId() == clientsId)
-                .collect(Collectors.toList());
-    }
+//    public List <Client> getClientsById(int clientsId){
+//        return clients.stream()
+//                .filter(client -> client.getId() == clientsId)
+//                .collect(Collectors.toList());
+//    }
 
 
 }
