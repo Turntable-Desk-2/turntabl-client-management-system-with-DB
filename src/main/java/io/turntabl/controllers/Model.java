@@ -3,6 +3,7 @@ package io.turntabl.controllers;
 import io.turntabl.Client;
 import io.turntabl.ClientLevel;
 import io.turntabl.ClientRegister;
+import io.turntabl.models.ClientsDAOI;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -36,7 +37,8 @@ public class Model {
                     break;
                 case 1:
                     System.out.println("Add new Client Details");
-                    NewClient.newClient();
+                    ClientsDAOI addC = new ClientsDAOI();
+                    addC.displayAllClients();
                     System.out.println("\n-------------------------------\n "+ GREEN+ "Client Added Successfully" + RESET + "\n----------------------------\n");
                     break;
                 case 2:
@@ -47,23 +49,23 @@ public class Model {
                         System.out.println("Enter id of Client you want to Update: ");
                         Integer idToUpdate = sc.nextInt();
 
-                        if (searchByID(idToUpdate)) {
-                            System.out.println("What do you want to Update?");
-                            String what = sc.next();
-
-                            System.out.println("Replace with?");
-                            String replaceWith = sc.next();
-
-                            PersistData.updateClient(idToUpdate.toString(), what, replaceWith);
-                            System.out.println("\n-------------------------------\n" + GREEN + "Client info Updated Successfully" + RESET + "\n----------------------------\n");
-                        }
+//                        if (searchByID(idToUpdate)) {
+//                            System.out.println("What do you want to Update?");
+//                            String what = sc.next();
+//
+//                            System.out.println("Replace with?");
+//                            String replaceWith = sc.next();
+//
+//                            PersistData.updateClient(idToUpdate.toString(), what, replaceWith);
+//                            System.out.println("\n-------------------------------\n" + GREEN + "Client info Updated Successfully" + RESET + "\n----------------------------\n");
+//                        }
                     }
                     break;
                 case 4:
                     if(getAllMyClients()) {
                         System.out.println("Enter client Id to Remove: ");
-                        String idToRemove = sc.next();
-                        PersistData.removeClient(idToRemove);
+                        Integer idToRemove = sc.nextInt();
+                        deleteClient(idToRemove);
                         System.out.println("\n-------------------------------\n" + GREEN + "Client Removed Successfully" + RESET + "\n----------------------------\n");
                     }
                     break;
@@ -75,17 +77,17 @@ public class Model {
                         case 1:
                             System.out.println("Enter Name: ");
                             String name = sc.next();
-                            searchByName(name);
+//                            searchByName(name);
                             break;
                         case 2:
                             System.out.println("Enter Level: \n1. Gold\n2. Premium\n3. Platinum\n");
                             Integer in = sc.nextInt();
-                            searchByLevel(in);
+//                            searchByLevel(in);
                             break;
                         case 3:
                             System.out.println("Enter Id: ");
                             int id = sc.nextInt();
-                            searchByID(id);
+//                            searchByID(id);
                             break;
                         default:
                             break;
@@ -97,131 +99,150 @@ public class Model {
         }
     }
 
-    public static void searchByLevel(Integer in){
-        ClientRegister reg = new ClientRegister(clientList());
-        switch (in){
-            case 1:
-                if (reg.getClientsLevel(ClientLevel.GOLD).size() == 0 ){
-                    System.out.println(RED + "------------------------------\nNo Client Found\n------------------------------" + RESET);
-                }else {
-                    System.out.println("--------------------------------------------------------------------------------------------------------------------------------------");
-                    System.out.printf("%5s %20s %20s %15s %20s %15s", BLUE + "ID", "NAME", "ADDRESS", "TEL NO.", "EMAIL", "LEVEL" + RESET);
-                    System.out.println();
-                    System.out.println("--------------------------------------------------------------------------------------------------------------------------------------");
-                    for (Client client : reg.getClientsLevel(ClientLevel.GOLD)) {
-                        System.out.format("%5s %20s %20s %15s %25s %15s",
-                                client.getId(), client.getName(), client.getAddress(), client.getTelephone(), client.getEmail(), client.getLevel());
-                        System.out.println();
-                    }
-                    System.out.println("---------------------------------------------------------------------------------------------------------------------------------------");
-                }
-                break;
-            case 2:
-                if (reg.getClientsLevel(ClientLevel.PREMIUM).size() == 0 ){
-                    System.out.println(RED + "------------------------------\nNo Client Found\n------------------------------" + RESET);
-                }else {
-                    System.out.println("---------------------------------------------------------------------------------------------------------------------------------------");
-                    System.out.printf("%5s %20s %20s %15s %20s %15s", BLUE + "ID", "NAME", "ADDRESS", "TEL NO.", "EMAIL", "LEVEL" + RESET);
-                    System.out.println();
-                    System.out.println("--------------------------------------------------------------------------------------------------------------------------------------");
-                    for (Client client : reg.getClientsLevel(ClientLevel.PREMIUM)) {
-                        System.out.format("%5s %20s %20s %15s %25s %15s",
-                                client.getId(), client.getName(), client.getAddress(), client.getTelephone(), client.getEmail(), client.getLevel());
-                        System.out.println();
-                    }
-                    System.out.println("---------------------------------------------------------------------------------------------------------------------------------------");
-                }
-                break;
-            case 3:
-                if (reg.getClientsLevel(ClientLevel.PLATINUM).size() == 0 ){
-                    System.out.println(RED + "------------------------------\nNo Client Found\n------------------------------" + RESET);
-                }else {
-                    System.out.println("---------------------------------------------------------------------------------------------------------------------------------------");
-                    System.out.printf("%5s %20s %20s %15s %20s %15s", BLUE + "ID", "NAME", "ADDRESS", "TEL NO.", "EMAIL", "LEVEL" + RESET);
-                    System.out.println();
-                    System.out.println("--------------------------------------------------------------------------------------------------------------------------------------");
-                    for (Client client : reg.getClientsLevel(ClientLevel.PLATINUM)) {
-                        System.out.format("%5s %20s %20s %15s %25s %15s",
-                                client.getId(), client.getName(), client.getAddress(), client.getTelephone(), client.getEmail(), client.getLevel());
-                        System.out.println();
-                    }
-                    System.out.println("---------------------------------------------------------------------------------------------------------------------------------------");
-                }
-                break;
-            default:
-                System.out.println(RED + "Enter Valid Client Level" + RESET);
-        }
-    }
-
-    public static void searchByName(String name){
-        ClientRegister reg = new ClientRegister(clientList());
-
-        if (reg.getClientsByName(name).size() == 0 ){
-            System.out.println(RED + "------------------------------\nNo Client Found\n------------------------------" + RESET);
-        }else {
-            System.out.println("---------------------------------------------------------------------------------------------------------------------------------------");
-            System.out.printf("%5s %20s %20s %15s %20s %15s", BLUE + "ID", "NAME" , "ADDRESS", "TEL NO.", "EMAIL", "LEVEL" + RESET);
-            System.out.println();
-            System.out.println("--------------------------------------------------------------------------------------------------------------------------------------");
-
-            for (Client client : reg.getClientsByName(name)) {
-                System.out.format("%5s %20s %20s %15s %25s %15s",
-                        client.getId(), client.getName(), client.getAddress(), client.getTelephone(), client.getEmail(), client.getLevel());
-                System.out.println();
-            }
-            System.out.println("---------------------------------------------------------------------------------------------------------------------------------------");
-        }
-    }
-
-    public static boolean searchByID(int id){
-        ClientRegister reg = new ClientRegister(clientList());
-
-        if (reg.getClientsById(id).size() == 0 ){
-            System.out.println(RED + "------------------------------\nNo Client Found with that ID\n------------------------------" + RESET);
-            return false;
-        }else {
-            System.out.println("---------------------------------------------------------------------------------------------------------------------------------------");
-            System.out.printf("%5s %20s %20s %15s %20s %15s", BLUE + "ID", "NAME", "ADDRESS", "TEL NO.", "EMAIL", "LEVEL" + RESET);
-            System.out.println();
-            System.out.println("--------------------------------------------------------------------------------------------------------------------------------------");
-            for (Client client : reg.getClientsById(id)) {
-                System.out.format("%5s %20s %20s %15s %25s %15s",
-                        client.getId(), client.getName(), client.getAddress(), client.getTelephone(), client.getEmail(), client.getLevel());
-                System.out.println();
-            }
-            System.out.println("---------------------------------------------------------------------------------------------------------------------------------------");
-        }
-        return true;
-    }
-
-    public static List<Client> clientList(){
-        List<Client> clients = new ArrayList<>();
-
-        for (String data : PersistData.readFile()){
-            String[] split = data.split("---");
-            clients.add(new Client(Integer.parseInt(split[0]), split[1], split[2], split[3], split[4], ClientLevel.valueOf(split[5])));
-        }
-        return clients;
-    }
-
     public static boolean getAllMyClients(){
-        ClientRegister reg = new ClientRegister(clientList());
-
-        if (reg.getAllClients().size() == 0 ){
-            System.out.println(RED + "------------------------------\nNo Client Found\n------------------------------" + RESET);
+        ClientsDAOI c = new ClientsDAOI();
+        if (c.displayAllClients().size() > 0) {
+            System.out.println(c.displayAllClients());
+        }else{
+            System.out.println("No Client Found");
             return false;
-        }else {
-            System.out.println("---------------------------------------------------------------------------------------------------------------------------------------");
-            System.out.printf("%5s %20s %20s %15s %20s %15s", BLUE + "ID", "NAME", "ADDRESS", "TEL NO.", "EMAIL", "LEVEL" + RESET);
-            System.out.println();
-            System.out.println("--------------------------------------------------------------------------------------------------------------------------------------");
-            for (Client client : reg.getAllClients()) {
-                System.out.format("%5s %20s %20s %15s %25s %15s",
-                        client.getId(), client.getName(), client.getAddress(), client.getTelephone(), client.getEmail(), client.getLevel());
-                System.out.println();
-            }
-            System.out.println("---------------------------------------------------------------------------------------------------------------------------------------");
         }
         return true;
     }
+
+    public static void deleteClient(Integer id){
+        ClientsDAOI c = new ClientsDAOI();
+        c.deleteClient(id);
+    }
+
+//    public static void searchByLevel(Integer in){
+//        ClientRegister reg = new ClientRegister(clientList());
+//        switch (in){
+//            case 1:
+//                if (reg.getClientsLevel(ClientLevel.GOLD).size() == 0 ){
+//                    System.out.println(RED + "------------------------------\nNo Client Found\n------------------------------" + RESET);
+//                }else {
+//                    System.out.println("--------------------------------------------------------------------------------------------------------------------------------------");
+//                    System.out.printf("%5s %20s %20s %15s %20s %15s", BLUE + "ID", "NAME", "ADDRESS", "TEL NO.", "EMAIL", "LEVEL" + RESET);
+//                    System.out.println();
+//                    System.out.println("--------------------------------------------------------------------------------------------------------------------------------------");
+//                    for (Client client : reg.getClientsLevel(ClientLevel.GOLD)) {
+//                        System.out.format("%5s %20s %20s %15s %25s %15s",
+//                                client.getId(), client.getName(), client.getAddress(), client.getTelephone(), client.getEmail(), client.getLevel());
+//                        System.out.println();
+//                    }
+//                    System.out.println("---------------------------------------------------------------------------------------------------------------------------------------");
+//                }
+//                break;
+//            case 2:
+//                if (reg.getClientsLevel(ClientLevel.PREMIUM).size() == 0 ){
+//                    System.out.println(RED + "------------------------------\nNo Client Found\n------------------------------" + RESET);
+//                }else {
+//                    System.out.println("---------------------------------------------------------------------------------------------------------------------------------------");
+//                    System.out.printf("%5s %20s %20s %15s %20s %15s", BLUE + "ID", "NAME", "ADDRESS", "TEL NO.", "EMAIL", "LEVEL" + RESET);
+//                    System.out.println();
+//                    System.out.println("--------------------------------------------------------------------------------------------------------------------------------------");
+//                    for (Client client : reg.getClientsLevel(ClientLevel.PREMIUM)) {
+//                        System.out.format("%5s %20s %20s %15s %25s %15s",
+//                                client.getId(), client.getName(), client.getAddress(), client.getTelephone(), client.getEmail(), client.getLevel());
+//                        System.out.println();
+//                    }
+//                    System.out.println("---------------------------------------------------------------------------------------------------------------------------------------");
+//                }
+//                break;
+//            case 3:
+//                if (reg.getClientsLevel(ClientLevel.PLATINUM).size() == 0 ){
+//                    System.out.println(RED + "------------------------------\nNo Client Found\n------------------------------" + RESET);
+//                }else {
+//                    System.out.println("---------------------------------------------------------------------------------------------------------------------------------------");
+//                    System.out.printf("%5s %20s %20s %15s %20s %15s", BLUE + "ID", "NAME", "ADDRESS", "TEL NO.", "EMAIL", "LEVEL" + RESET);
+//                    System.out.println();
+//                    System.out.println("--------------------------------------------------------------------------------------------------------------------------------------");
+//                    for (Client client : reg.getClientsLevel(ClientLevel.PLATINUM)) {
+//                        System.out.format("%5s %20s %20s %15s %25s %15s",
+//                                client.getId(), client.getName(), client.getAddress(), client.getTelephone(), client.getEmail(), client.getLevel());
+//                        System.out.println();
+//                    }
+//                    System.out.println("---------------------------------------------------------------------------------------------------------------------------------------");
+//                }
+//                break;
+//            default:
+//                System.out.println(RED + "Enter Valid Client Level" + RESET);
+//        }
+//    }
+//
+//    public static void searchByName(String name){
+//        ClientRegister reg = new ClientRegister(clientList());
+//
+//        if (reg.getClientsByName(name).size() == 0 ){
+//            System.out.println(RED + "------------------------------\nNo Client Found\n------------------------------" + RESET);
+//        }else {
+//            System.out.println("---------------------------------------------------------------------------------------------------------------------------------------");
+//            System.out.printf("%5s %20s %20s %15s %20s %15s", BLUE + "ID", "NAME" , "ADDRESS", "TEL NO.", "EMAIL", "LEVEL" + RESET);
+//            System.out.println();
+//            System.out.println("--------------------------------------------------------------------------------------------------------------------------------------");
+//
+//            for (Client client : reg.getClientsByName(name)) {
+//                System.out.format("%5s %20s %20s %15s %25s %15s",
+//                        client.getId(), client.getName(), client.getAddress(), client.getTelephone(), client.getEmail(), client.getLevel());
+//                System.out.println();
+//            }
+//            System.out.println("---------------------------------------------------------------------------------------------------------------------------------------");
+//        }
+//    }
+//
+//    public static boolean searchByID(int id){
+//        ClientRegister reg = new ClientRegister(clientList());
+//
+//        if (reg.getClientsById(id).size() == 0 ){
+//            System.out.println(RED + "------------------------------\nNo Client Found with that ID\n------------------------------" + RESET);
+//            return false;
+//        }else {
+//            System.out.println("---------------------------------------------------------------------------------------------------------------------------------------");
+//            System.out.printf("%5s %20s %20s %15s %20s %15s", BLUE + "ID", "NAME", "ADDRESS", "TEL NO.", "EMAIL", "LEVEL" + RESET);
+//            System.out.println();
+//            System.out.println("--------------------------------------------------------------------------------------------------------------------------------------");
+//            for (Client client : reg.getClientsById(id)) {
+//                System.out.format("%5s %20s %20s %15s %25s %15s",
+//                        client.getId(), client.getName(), client.getAddress(), client.getTelephone(), client.getEmail(), client.getLevel());
+//                System.out.println();
+//            }
+//            System.out.println("---------------------------------------------------------------------------------------------------------------------------------------");
+//        }
+//        return true;
+//    }
+//
+//    public static List<Client> clientList(){
+//        List<Client> clients = new ArrayList<>();
+//
+//        for (String data : PersistData.readFile()){
+//            String[] split = data.split("---");
+//            clients.add(new Client(Integer.parseInt(split[0]), split[1], split[2], split[3], split[4], ClientLevel.valueOf(split[5])));
+//        }
+//        return clients;
+//    }
+//
+//    public static boolean getAllMyClients(){
+//        ClientRegister reg = new ClientRegister(clientList());
+
+//        if (reg.getAllClients().size() == 0 ){
+//            System.out.println(RED + "------------------------------\nNo Client Found\n------------------------------" + RESET);
+//            return false;
+//        }else {
+//            System.out.println("---------------------------------------------------------------------------------------------------------------------------------------");
+//            System.out.printf("%5s %20s %20s %15s %20s %15s", BLUE + "ID", "NAME", "ADDRESS", "TEL NO.", "EMAIL", "LEVEL" + RESET);
+//            System.out.println();
+//            System.out.println("--------------------------------------------------------------------------------------------------------------------------------------");
+//            for (Client client : reg.getAllClients()) {
+//                System.out.format("%5s %20s %20s %15s %25s %15s",
+//                        client.getId(), client.getName(), client.getAddress(), client.getTelephone(), client.getEmail(), client.getLevel());
+//                System.out.println();
+//            }
+//            System.out.println("---------------------------------------------------------------------------------------------------------------------------------------");
+//        }
+//        return true;
+//    }
+
+
+
 }
