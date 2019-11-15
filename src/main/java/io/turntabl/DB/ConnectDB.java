@@ -3,6 +3,7 @@ package io.turntabl.DB;
 import java.sql.*;
 
 public class ConnectDB {
+
     public static Connection dbConnect(){
         Connection conn = null;
         String url = "jdbc:postgresql:tcmsdb";

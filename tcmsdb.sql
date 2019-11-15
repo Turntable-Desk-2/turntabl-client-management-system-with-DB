@@ -1,0 +1,31 @@
+--drop table if exists levels;
+--drop table if exists clients;
+
+create table levels(level_id integer primary key not null, level_name varchar(50) not null);
+create table clients(client_id serial primary key, client_name varchar(100) not null, level_id integer references levels(level_id), client_address varchar(100) not null, client_email varchar(100) not null, phone varchar(50) not null);
+insert into levels(level_id, level_name) values(1, 'Gold');
+insert into levels(level_id, level_name) values(2, 'Premium');
+insert into levels(level_id, level_name) values(3, 'PLatinum');
+
+--insert into clients values('Alex Agyapong', '1', 'Crookbridge 2345 CB', 'agyaalex@io.com','030-0076545');
+--insert into clients values('Alexa Frimpong','2', 'Booknnbridge 5800 Bb','agyaalex@io.com','030-0076545');
+--insert into clients values('Thomas Hardy', '3', 'Fosterstreet 2745 Fs', 'agyaalex@io.com','030-0076545');
+--insert into clients values('Christiana Arhin', '1', 'Brownbridge 2345 CB', 'agyaalex@io.com','030-0076545');
+--insert into clients values('Hannah Moos', '2', 'Greenbridge 2345 CB', 'agyaalex@io.com','030-0076545');
+--insert into clients values('Martin Sommer', '3', 'Crookbridge 2345 CB', 'agyaalex@io.com','030-0076545');
+--insert into clients values('Elizabeth Gomez', '1', 'Haly Road 2345 HR', 'agyaalex@io.com','030-0076545');
+--insert into clients values('Sam Simpson', '2', 'Royal Gardens 2345 RG', 'agyaalex@io.com','030-0076545');
+--insert into clients values('Victoria Ashworth', '3', 'Berkeley Gardens 2345 BG', 'agyaalex@io.com','030-0076545');
+--insert into clients values('Peter Banor', '1', 'Taifa 2345 TF', 'agyaalex@io.com','030-0076545');
+--insert into clients values('Matthew Banor', '2', 'Legon 2345 L', 'agyaalex@io.com','030-0076545');
+--insert into clients values('Patrick Afful', '3', 'UPSA 2345 UP', 'agyaalex@io.com','030-0076545');
+--insert into clients values('James Yartey', '1', 'Hansonic 2345 HS', 'agyaalex@io.com','030-0076545');
+--insert into clients values('Elvis Owusu', '2', 'Madina 2345 MD', 'agyaalex@io.com','030-0076545');
+--insert into clients values('Samuel Appiah', '3', 'Goma  2345 GM', 'agyaalex@io.com','030-0076545');
+--insert into clients values('Nathan Forte', '1', 'Israel 2345 IS', 'agyaalex@io.com','030-0076545');
+--insert into clients values('Omar Gooding', '2', 'Lapaz 2345 LP', 'agyaalex@io.com','030-0076545');
+--insert into clients values('Jane Brown', '3', 'Dansoamn 2345 DS', 'agyaalex@io.com','030-0076545');
+--insert into clients values('Roland Mendez', '1', 'Achimota 2345 AC', 'agyaalex@io.com','030-0076545');
+--insert into clients values('Frank Owusu', '2', 'Amasaman 2345 AM', 'agyaalex@io.com','030-0076545');
+--insert into clients values('Philip Howard', '3', 'Kaneshie 2345 kS', 'agyaalex@io.com','030-0076545');
+--insert into clients values('Karen Laurel', '1', 'Mallam 2345 ML', 'agyaalex@io.com','030-0076545');
