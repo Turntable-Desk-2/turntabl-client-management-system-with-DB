@@ -8,7 +8,7 @@ public class Client {
     private String email;
     private ClientLevel level;
 
-    public Client(int id, String name, Integer level, String address, String telephone, String email) {
+    public Client(int id, String name, ClientLevel level, String address, String telephone, String email) {
         this.id = id;
         this.name = name;
         this.address = address;

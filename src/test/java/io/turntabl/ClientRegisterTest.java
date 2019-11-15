@@ -12,7 +12,7 @@ public class ClientRegisterTest{
     Client client2 = new Client(002, "Shadrack Amoakohene", "Dankoman", "+2355454458272", "shad@gmail.com", ClientLevel.PLATINUM);
     Client client3 = new Client(003, "Yaa Nuamah", "Dansoman", "+23355345572", "yaa@gmail.com", ClientLevel.PREMIUM);
     Client client4 = new Client(004, "Sam Bartels", "Ashaiman", "+23355554572", "sam@gmail.com", ClientLevel.GOLD);
-    Client client5 = new Client(005, "Sam Moorehouse", "Dansoma", "+233553458272", "Moore@gmail.com", ClientLevel.PLATINUM);
+    Client client5 = new Client(005, "Sam Moorehouse", "Dansoman", "+233553458272", "Moore@gmail.com", ClientLevel.PLATINUM);
     Client client6 = new Client(006, "Isaac Barsely", "London", "+233553454472", "james96@gmail.com", ClientLevel.PREMIUM);
     Client client7 = new Client(007, "Ibrahim Inusa", "Nsawam", "+2335534355456", "ibra@gmail.com", ClientLevel.GOLD);
 

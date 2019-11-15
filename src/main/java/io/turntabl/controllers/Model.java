@@ -199,7 +199,7 @@ public class Model {
 
         for (String data : PersistData.readFile()){
             String[] split = data.split("---");
-            clients.add(new Client(Integer.parseInt(split[0]), split[1], split[2], split[3], split[4], ClientLevel.valueOf(split[5])));
+            clients.add(new Client(Integer.parseInt(split[0]),  split[1], split[2] , split[3], split[4], ClientLevel.valueOf(split[5]) ));
         }
         return clients;
     }
