@@ -1,15 +1,19 @@
 package io.turntabl.DB;
 
+import java.io.BufferedReader;
 import java.sql.*;
 
 public class ConnectDB {
     public static Connection dbConnect() throws ClassNotFoundException {
+
         Connection conn = null;
         Statement stmt = null;
+        //BufferedReader reader = null;
         Class.forName("org.h2.Driver");
-        //String url = "jdbc:postgresql:tcmsdb";
+        String url = "jdbc:h2:~/test";
+
         try{
-            conn = DriverManager.getConnection("jdbc:h2:~/test", "", "");
+            conn = DriverManager.getConnection(url, "", "");
             System.out.println("Database Connected");
             stmt.execute("drop table user");
             stmt.execute("create table user(id int primary key, name varchar(100))");

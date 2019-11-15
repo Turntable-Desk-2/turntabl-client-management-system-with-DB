@@ -63,7 +63,7 @@ set CMD_LINE_ARGS=%*
 :execute
 @rem Setup the command line
 
-set CLASSPATH=%APP_HOME%\lib\turntable-client-management-system-1.0-SNAPSHOT.jar
+set CLASSPATH=%APP_HOME%\lib\turntable-client-management-system-1.0-SNAPSHOT.jar;%APP_HOME%\lib\h2-1.3.148.jar
 
 @rem Execute turntable-client-management-system
 "%JAVA_EXE%" %DEFAULT_JVM_OPTS% %JAVA_OPTS% %TURNTABLE_CLIENT_MANAGEMENT_SYSTEM_OPTS%  -classpath "%CLASSPATH%" io.turntabl.TCMSMain %CMD_LINE_ARGS%

@@ -1,25 +1,19 @@
 package io.turntabl;
 
 public class Client {
-    private int id;
     private String name;
     private String address;
     private String telephone;
     private String email;
-    private ClientLevel level;
+    private Integer level;
 
-    public Client(int id, String name, Integer level, String address, String telephone, String email) {
-        this.id = id;
+    public Client(String name, Integer level, String address, String telephone, String email) {
         this.name = name;
         this.address = address;
         this.telephone = telephone;
         this.email = email;
-//        this.level = level;
+        this.level = level;
 
-    }
-
-    public int getId() {
-        return id;
     }
 
     public String getName() {
@@ -39,19 +33,8 @@ public class Client {
     }
 
 
-    public ClientLevel getLevel() {
+    public Integer getLevel() {
         return level;
     }
 
-    @Override
-    public String toString() {
-        return "Client{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", address='" + address + '\'' +
-                ", telephone='" + telephone + '\'' +
-                ", email='" + email + '\'' +
-                ", level=" + level +
-                '}';
-    }
 }
